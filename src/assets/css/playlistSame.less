@@ -1,0 +1,138 @@
+@size: 4.7rem;
+@size1: 3.5rem;
+@radius: 1rem;
+
+h2 {
+  margin-top: 3rem;
+  color: #73776b;
+  font-size: 2rem;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  cursor: pointer;
+
+  // max-width: 1680px;
+  li {
+    margin: 1rem 2.5rem 1.5rem 0px;
+    position: relative;
+    width: 20rem;
+    // height: 290px;
+    border-radius: @radius;
+
+    &:hover {
+      box-shadow: 0px 3px 3px 0 black;
+    }
+
+    a {
+      color: @modePColor;
+      display: block;
+    }
+
+    a:hover+span {
+      top: calc(75% - @size);
+      // top: 65%;
+      // left: 10%;
+      opacity: 1;
+    }
+
+    // border-radius: @radius;
+    a:active {
+      color: black;
+    }
+
+    img {
+      // width: 220px;
+      width: 100%;
+      height: 21rem;
+      border-top-left-radius: @radius;
+      border-top-right-radius: @radius;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    p {
+      box-sizing: border-box;
+      // white-space: initial;
+      padding: 0px 2rem 0px;
+      overflow: hidden;
+      border-bottom-left-radius: @radius;
+      border-bottom-right-radius: @radius;
+      width: 100%;
+      height: 4rem;
+      background-color: @bgColor;
+      line-height: 4rem;
+      font-size: 1.4rem;
+      font-family: kaiti;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    i {
+      position: absolute;
+      top: 3%;
+      right: 5%;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: @buttonColor;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      top: 90%;
+      left: 10%;
+      border-radius: 50%;
+      background-color: @buttonColor;
+      width: @size;
+      height: @size;
+      text-align: center;
+      line-height: @size;
+      font-size: 2rem;
+      color: whitesmoke;
+      transition: .2s;
+      opacity: 0;
+
+      &:hover {
+        top: calc(75% - @size);
+        opacity: .95;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  h2 {
+    margin-top: 15px;
+    text-indent: 2rem;
+    font-size: 1.6rem;
+  }
+
+  ul {
+    width: 80vw;
+    li {
+      width: 150px;
+      span{
+        width: @size1 ;
+        height: @size1 ;
+        line-height: @size1;
+        &:hover {
+          top: calc(75% - @size1);
+        }
+      }
+      img {
+        height: 150px;
+      }
+      p{
+        height: 25px;
+        line-height: 25px;
+      }
+      a:hover+span {
+        top: calc(75% - @size1);
+      }
+    }
+  }
+}
