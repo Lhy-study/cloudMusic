@@ -17,7 +17,7 @@
 import {  reactive, onBeforeMount } from "vue";
 import { getAllList ,plDetail} from "../../api/playlist";
 import {playAllMusic,getAllId} from "../../api/playing";
-import { formatNum } from "../../api/format";
+import { formatNum } from "../../utils/format";
 import { image ,dealImgError} from "../../baseconfig";
 import { ElMessage } from "element-plus";
 

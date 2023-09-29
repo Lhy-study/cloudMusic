@@ -83,6 +83,7 @@
 import { reactive, ref ,watch} from 'vue';
 import {getArtist} from "../../api/expore";
 import {onBeforeRouteLeave} from "vue-router";
+import { throttle } from "../../utils/performance"
 import { artist } from "../../type/index";
 import { ElMessage } from 'element-plus';
 import {page,image , dealImgError} from "../../baseconfig";
@@ -167,12 +168,8 @@ let stop = watch(() => { return { ...singerInfo } }, async (newVal, oldVal) => {
 
 
 const  controller =new AbortController();
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-        if (result.more) {
+const scrollLoding = ()=>{
+    if (result.more) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -187,8 +184,8 @@ document.addEventListener("scroll", () => {
                 type: "warning"
             })
         }
-    }, 300);
-},{signal:controller.signal});
+}
+document.addEventListener("scroll",throttle(scrollLoding,0.2),{signal:controller.signal});
 
 
 onBeforeRouteLeave(()=>{

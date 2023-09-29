@@ -26,11 +26,12 @@ import searchLoading from "../loading/searchLoading.vue";
 import { onBeforeMount, onBeforeUnmount, reactive, ref } from "vue";
 import { useStore } from "../../store/user";
 import { uPlaylist} from "../../api/user";
-import { formatNum } from "../../api/format";
+import { formatNum } from "../../utils/format";
 import {pldetail} from "../../type/index";
 import { storeToRefs } from "pinia";
 import { ElMessage } from "element-plus";
 import { image ,dealImgError} from "../../baseconfig"; 
+import { throttle } from "../../utils/performance"
 
 
 const {userInfo} = storeToRefs(useStore());
@@ -80,14 +81,8 @@ onBeforeMount(async ()=>{
 });
 
 const controller = new AbortController();//用来取消监听在该组件下的滚动事件
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-      // console.log(11);
-      
-        if (endNum.value < result.playlist.length) {
+function scrollLoading(){
+    if (endNum.value < result.playlist.length) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -101,8 +96,8 @@ document.addEventListener("scroll", () => {
                 type: "warning"
             });
         }
-    }, 300);
-},{signal:controller.signal});//监听滚动事件
+}
+document.addEventListener("scroll",throttle(scrollLoading,0.2),{signal:controller.signal});//监听滚动事件
 
 onBeforeUnmount(()=>{
     controller.abort();

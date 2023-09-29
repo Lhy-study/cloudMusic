@@ -41,7 +41,7 @@ import { ElMessage } from 'element-plus';
 import { highquality } from "../../api/tag";
 import { getHighquality, plDetail } from "../../api/playlist";
 import { playAllMusic, getAllId } from "../../api/playing";
-import { formatNum } from "../../api/format";
+import { formatNum } from "../../utils/format";
 import { usdetail } from "../../api/user";
 import { pldetail } from "../../type/index";
 import { plTagState } from "../../store/tag";

@@ -71,7 +71,7 @@
 import SearchLoading from '../loading/searchLoading.vue';
 import { onBeforeMount, reactive, ref, watchEffect ,watch} from 'vue';
 import { catlist, hotTag, highquality } from "../../api/tag";
-import { fromatcat ,formatNum} from "../../api/format";
+import { fromatcat ,formatNum} from "../../utils/format";
 import { getAllList ,plDetail ,getHighquality} from "../../api/playlist";
 import { playAllMusic , getAllId} from "../../api/playing";
 import { plTag, category } from "../../type/index"

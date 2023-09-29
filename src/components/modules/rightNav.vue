@@ -46,7 +46,7 @@
   import { elementStore } from "../../store/element";
   import { storeToRefs } from "pinia";
   import { getDeatils } from "../../api/music";
-  import {fomatDuration} from "../../api/format";
+  import {fomatDuration} from "../../utils/format";
   import { reactive, ref, watch , watchEffect} from "vue";
   import { ElMessage } from "element-plus";
   

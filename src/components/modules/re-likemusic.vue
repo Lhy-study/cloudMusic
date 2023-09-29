@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import SkeletonVue from "../skeleton/skeleton.vue";
 import { ref, reactive ,onBeforeMount} from "vue";
-import { formatFee} from "../../api/format";
+import { formatFee} from "../../utils/format";
 import { setNewPlayMusic } from "../../api/playing";
 import { personalizedNewsong } from "../../api/expore";
 import { musicDeatils } from "../../type/index";

@@ -20,7 +20,7 @@
 import SkeletonVue from "../skeleton/skeleton.vue";
 import { ref, reactive ,onBeforeMount} from "vue";
 import { getAllList ,plDetail} from "../../api/playlist";
-import { formatNum} from "../../api/format";
+import { formatNum} from "../../utils/format";
 import {playAllMusic,getAllId} from "../../api/playing";
 import { ElMessage } from "element-plus";
 import { image , dealImgError} from "../../baseconfig";

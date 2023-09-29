@@ -57,8 +57,9 @@
 import SearchLoading from "../loading/searchLoading.vue";
 import { onBeforeMount, onBeforeUnmount, reactive ,ref} from "vue";
 import { gettoplist } from "../../api/expore";
-import { formatNum ,formatDate} from "../../api/format";
+import { formatNum ,formatDate} from "../../utils/format";
 import { ElMessage } from "element-plus";
+import { throttle } from "../../utils/performance"
 import { pldetail ,simmusic} from "../../type/index";
 import { image , dealImgError} from "../../baseconfig";
 import { play ,setNewPlayMusic} from "../../api/playing";
@@ -159,12 +160,8 @@ let one=onBeforeMount(async ()=>{
 });
 
 const controller =new AbortController();
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-        if (end.value < result.globeList.length) {
+function scrollLoading(){
+    if (end.value < result.globeList.length) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -178,8 +175,8 @@ document.addEventListener("scroll", () => {
                 message:"已经到底了"
             })
         }
-    }, 300);
-},{signal:controller.signal});
+}
+document.addEventListener("scroll",throttle(scrollLoading,0.3) ,{signal:controller.signal});
 
 onBeforeUnmount(()=>{
     controller.abort();

@@ -27,7 +27,7 @@ import SearchLoadingVue from "../loading/searchLoading.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../../store/user";
 import { fans } from "../../api/user";
-import { formatGender, formatNum } from "../../api/format";
+import { formatGender, formatNum } from "../../utils/format";
 import { user } from "../../type/index";
 import { onBeforeMount, reactive, ref } from "vue";
 import { image , dealImgError } from "../../baseconfig";

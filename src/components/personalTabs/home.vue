@@ -53,7 +53,7 @@ import MusicLoader from "../../components/modules/musicLoader.vue"
 import { musicListStore } from "../../store/playlist";
 import { musicStateStore } from "../../store/musicState"
 import { storeToRefs } from "pinia";
-import {fomatDuration,formatPt} from "../../api/format";
+import {fomatDuration,formatPt} from "../../utils/format";
 import { ElMessage } from "element-plus";
 
 const { playlist, playMusic } = storeToRefs(musicListStore());

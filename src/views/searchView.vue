@@ -56,7 +56,7 @@ import { ElMessage } from 'element-plus';
 import { watchEffect, reactive ,provide} from "vue";
 import { useRoute, RouterView ,onBeforeRouteLeave} from "vue-router";
 import { multimatch } from "../api/search";
-import { formatNum } from "../api/format";
+import { formatNum } from "../utils/format";
 import { image ,dealImgError} from "../baseconfig";
 let route = useRoute();
 provide('route',111)

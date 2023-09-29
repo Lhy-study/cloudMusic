@@ -55,7 +55,7 @@ import { reactive, watchEffect, ref, } from 'vue';
 import { ElMessage } from "element-plus";
 import { getDeatils } from "../../api/music";
 import { plDetail } from "../../api/playlist"
-import { fomatDuration, formatFee } from "../../api/format";
+import { fomatDuration, formatFee } from "../../utils/format";
 import { setNewPlayMusic } from "../../api/playing"
 import { musicDeatils } from "../../type/index";
 import {page} from "../../baseconfig";

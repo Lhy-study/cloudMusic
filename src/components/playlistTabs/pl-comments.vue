@@ -45,7 +45,7 @@ import SearchLoadingVue from "../loading/searchLoading.vue";
 import { comment } from "../../type/index";
 import { plcomment} from "../../api/comment";
 import { related} from "../../api/playlist"
-import {formatNum,formatTime} from "../../api/format";
+import {formatNum,formatTime} from "../../utils/format";
 import { reactive, ref, watchEffect } from "vue";
 import {useRoute , onBeforeRouteLeave} from "vue-router";
 import { ElMessage } from "element-plus";

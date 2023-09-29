@@ -52,7 +52,7 @@ import { ElMessage } from "element-plus";
 import { reactive, ref, watchEffect } from "vue";
 import { useRoute ,onBeforeRouteLeave} from "vue-router";
 import { search } from "../../api/search";
-import { fomatDuration ,formatFee} from "../../api/format";
+import { fomatDuration ,formatFee} from "../../utils/format";
 import {setNewPlayMusic} from "../../api/playing";
 let pageCount = ref(1);
 // let offset = ref(0);

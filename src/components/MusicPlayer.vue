@@ -81,7 +81,7 @@ import { elementStore } from "../store/element";
 import { image ,dealImgError} from "../baseconfig";
 import { storeToRefs } from "pinia";
 import { checkMusic, getDeatils, getUrl } from "../api/music";
-import { fomatDuration } from "../api/format";
+import { fomatDuration } from "../utils/format";
 
 let Audioelement = ref<HTMLAudioElement|null>(null);
 let music =ref<HTMLElement|null>(null);

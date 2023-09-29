@@ -49,7 +49,7 @@
 <script lang="ts" setup>
 import SearchLoadingVue from "../loading/searchLoading.vue";
 import { ref, inject} from 'vue';
-import { fomatDuration, formatFee } from "../../api/format";
+import { fomatDuration, formatFee } from "../../utils/format";
 import { setNewPlayMusic } from "../../api/playing"
 import { aldetail} from "../../type/index";
 import { useRoute } from "vue-router";

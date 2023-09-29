@@ -43,7 +43,7 @@
 import SearchLoadingVue from "../loading/searchLoading.vue";
 import { ElMessage } from "element-plus";
 import { album } from "../../api/singer";
-import { formatDate, formatFee, fomatDuration } from "../../api/format";
+import { formatDate, formatFee, fomatDuration } from "../../utils/format";
 import { albumCont } from "../../api/album";
 import {setNewPlayMusic,playAllMusic,getAllId} from "../../api/playing"
 import { likeList } from "../../store/likeList";
@@ -53,6 +53,7 @@ import { reactive,ref ,watchEffect } from 'vue';
 import { useRoute, onBeforeRouteLeave } from "vue-router";
 import { storeToRefs } from "pinia";
 import { image ,dealImgError} from "../../baseconfig";
+import { throttle } from "../../utils/performance"
 
 let loaderFlag=ref(true);
 const { likelists } = storeToRefs(likeList());
@@ -198,14 +199,8 @@ onBeforeRouteLeave(() => {
     controller.abort();
 });
 const controller =new AbortController();
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-        // console.log(11);
-        
-        if (result.more) {
+function scrollLoading(){
+    if (result.more) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -214,8 +209,8 @@ document.addEventListener("scroll", () => {
                 page.value += 1;
             }
         }
-    }, 200);
-},{signal:controller.signal});
+}
+document.addEventListener("scroll", throttle(scrollLoading,0.2),{signal:controller.signal});
 </script>
 
 <style lang="less" scoped>

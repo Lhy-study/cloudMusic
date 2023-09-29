@@ -43,6 +43,7 @@ import { simBlum } from "../../../type/index";
 import { onBeforeRouteLeave } from "vue-router";
 import { ElMessage } from "element-plus";
 import { image , dealImgError} from "../../../baseconfig";
+import { throttle } from "../../../utils/performance"
 
 enum enumArea{
     "全部"="ALL",
@@ -130,12 +131,8 @@ const stop=watchEffect(async ()=>{//要每次参数不同时，要重置endNum
 });
 
 const controller = new AbortController();//用来取消监听在该组件下的滚动事件
-document.addEventListener("scroll",()=>{
-    if(timer.value){
-        clearTimeout(timer.value);
-    }
-    timer.value=setTimeout(()=>{
-        if(endNum.value<result.data.length){
+function scrollLoading(){
+    if(endNum.value<result.data.length){
             let scrollHeight=document.documentElement.scrollHeight;
             let scrollTop=document.documentElement.scrollTop;
             let clientHeight=document.documentElement.clientHeight;
@@ -149,8 +146,8 @@ document.addEventListener("scroll",()=>{
                 duration: 2000,
             });
         }
-    },200);
-},{signal:controller.signal});
+}
+document.addEventListener("scroll",throttle(scrollLoading,0.2),{signal:controller.signal});
 onBeforeRouteLeave(() => {
     stop(); 
     controller.abort();

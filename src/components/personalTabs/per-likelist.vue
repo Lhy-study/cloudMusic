@@ -86,10 +86,11 @@ import { useStore } from "../../store/user";
 import { likelist } from "../../api/user";
 import { getDeatils } from "../../api/music";
 import {setNewPlayMusic} from "../../api/playing"
-import { formatFee,fomatDuration } from "../../api/format";
+import { formatFee,fomatDuration } from "../../utils/format";
 import { onBeforeMount, onBeforeUnmount, reactive,ref } from "vue";
 import { ElMessage } from "element-plus";
 import { musicDeatils } from "../../type/index";
+import { throttle } from "../../utils/performance";
 
 let loaderFlag = ref(true);
 const { userInfo } = storeToRefs(useStore());
@@ -155,14 +156,8 @@ onBeforeMount(async () => {
 });
 
 const controller = new AbortController();//用来取消监听在该组件下的滚动事件
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-      // console.log(11);
-      
-        if (end.value < result.allsongs.length) {
+function scrollLoading(){
+    if (end.value < result.allsongs.length) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -176,8 +171,8 @@ document.addEventListener("scroll", () => {
                 type: "warning"
             });
         }
-    }, 300);
-},{signal:controller.signal});//监听滚动事件
+}
+document.addEventListener("scroll", throttle(scrollLoading,0.3),{signal:controller.signal});//监听滚动事件
 
 onBeforeUnmount(()=>{
     controller.abort();

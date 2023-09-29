@@ -51,7 +51,7 @@ import { reactive, watchEffect } from "vue";
 import { useRoute, onBeforeRouteLeave } from "vue-router";
 import { usdetail } from "../api/user";
 import { plDetail, dynamic, subscribe } from "../api/playlist";
-import { formatDate, formatNum } from "../api/format";
+import { formatDate, formatNum } from "../utils/format";
 import { playAllMusic ,addplayList } from "../api/playing";
 import { pldetail } from "../type/index";
 import { useStore } from "../store/user";

@@ -17,7 +17,7 @@
 import SearchLoadingVue from "../loading/searchLoading.vue";
 import { reactive, watchEffect ,ref} from "vue";
 import {subscribers } from "../../api/playlist";
-import { formatGender } from "../../api/format"
+import { formatGender } from "../../utils/format"
 import {useRoute , onBeforeRouteLeave} from "vue-router";
 import {user} from "../../type/index";
 import { ElMessage } from "element-plus";

@@ -44,7 +44,7 @@
   import { reactive, watchEffect ,provide} from "vue";
   import { useRoute ,onBeforeRouteLeave} from "vue-router";
   import { albumCont , albumDynamic,albumSub} from "../api/album";
-  import { formatDate ,formatNum} from "../api/format";
+  import { formatDate ,formatNum} from "../utils/format";
   import { playAllMusic ,addplayList, getAllId } from "../api/playing";
   import { aldetail, musicDeatils } from "../type/index";
   import {useStore} from "../store/user";

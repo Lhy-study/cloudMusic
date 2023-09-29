@@ -53,9 +53,10 @@ import { newSongExpress } from "../../../api/expore";
 import{ musicDeatils } from "../../../type/index";
 import { ElMessage } from "element-plus";
 import { image , dealImgError} from "../../../baseconfig";
-import { fomatDuration, formatFee } from "../../../api/format";
+import { fomatDuration, formatFee } from "../../../utils/format";
 import { onBeforeRouteLeave } from "vue-router";
 import { setNewPlayMusic ,playAllMusic,getAllId} from "../../../api/playing";
+import { throttle } from "../../../utils/performance"
 
 let timer=ref<any>(null);//一个定时器
 let loading=ref<boolean>(false);
@@ -113,12 +114,8 @@ let stop=watchEffect(async ()=>{
 });
 
 const controller = new AbortController();//用来取消监听在该组件下的滚动事件
-document.addEventListener("scroll",()=>{
-    if(timer.value){
-        clearTimeout(timer.value);
-    }
-    timer.value=setTimeout(()=>{
-        if(endNum.value<result.value.length){
+function scrollLoading(){
+    if(endNum.value<result.value.length){
             let scrollHeight=document.documentElement.scrollHeight;
             let scrollTop=document.documentElement.scrollTop;
             let clientHeight=document.documentElement.clientHeight;
@@ -132,8 +129,8 @@ document.addEventListener("scroll",()=>{
                 duration: 2000,
             });
         }
-    },200);
-},{signal:controller.signal})
+}
+document.addEventListener("scroll",throttle(scrollLoading,0.3),{signal:controller.signal})
 
 onBeforeRouteLeave(()=>{
     stop();

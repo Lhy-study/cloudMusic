@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount, reactive } from "vue";
-import { formatIsLike, fomatDuration, formatFee } from "../api/format";
+import { formatIsLike, fomatDuration, formatFee } from "../utils/format";
 import { setNewPlayMusic ,playAllMusic,getAllId ,addplayList} from "../api/playing";
 import { getDaySongs } from "../api/user";
 import { musicDeatils } from "../type/index";

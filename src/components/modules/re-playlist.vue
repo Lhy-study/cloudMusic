@@ -25,7 +25,7 @@
 import SkeletonVue from "../skeleton/skeleton.vue";
 import { ref, reactive ,onBeforeMount} from "vue";
 import { plDetail} from "../../api/playlist";
-import { formatNum} from "../../api/format";
+import { formatNum} from "../../utils/format";
 import {playAllMusic,getAllId} from "../../api/playing";
 import { personalized } from "../../api/expore";
 import { pldetail } from "../../type/index";

@@ -29,7 +29,7 @@ import { ref } from 'vue';
 import {storeToRefs} from "pinia";
 import {useStore} from "../store/user";
 import {likeList} from "../store/likeList";
-import {formatGender,formatDate} from "../api/format";
+import {formatGender,formatDate} from "../utils/format";
 import { dealImgError } from "../baseconfig";
 
 const {userInfo} = storeToRefs(useStore());

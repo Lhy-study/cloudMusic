@@ -51,11 +51,12 @@
 import SearchLoadingVue from "../components/loading/searchLoading.vue";
 import { reactive, watchEffect, ref } from "vue";
 import { useRoute, onBeforeRouteLeave } from "vue-router";
-import { formatDate, formatGender, formatNum } from "../api/format";
+import { formatDate, formatGender, formatNum } from "../utils/format";
 import { uPlaylist, usdetail } from "../api/user";
 import { user, pldetail } from "../type";
 import { ElMessage } from "element-plus";
 import { image, dealImgError } from "../baseconfig";
+import { throttle } from "../utils/performance"
 
 let loaderFlag = ref(true);
 const route = useRoute();
@@ -190,13 +191,8 @@ const playlist = watchEffect(async () => {
 // }
 
 const controller = new AbortController();//用来取消监听在该组件下的滚动事件
-document.addEventListener("scroll", () => {
-    if (timer.value) {
-        clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-        // console.log(11);
-        if (result.more) {
+function scrollLoading(){
+    if (result.more) {
             let scrollTop = document.documentElement.scrollTop;
             let clientHeight = document.documentElement.clientHeight;
             let scrollHeight = document.documentElement.scrollHeight;
@@ -210,8 +206,8 @@ document.addEventListener("scroll", () => {
                 type: "warning"
             });
         }
-    }, 300);
-}, { signal: controller.signal });//监听滚动事件
+}
+document.addEventListener("scroll", throttle(scrollLoading,0.3), { signal: controller.signal });//监听滚动事件
 
 onBeforeRouteLeave(() => {
     stop();

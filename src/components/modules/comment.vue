@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import {ref,onMounted,watch, reactive} from "vue";
 import { getHotComment } from "../../api/comment";
-import { formatTime } from "../../api/format";
+import { formatTime } from "../../utils/format";
 import {storeToRefs} from "pinia";
 import {musicListStore} from "../../store/playlist";
 import LoadingVue from "./loading.vue";
