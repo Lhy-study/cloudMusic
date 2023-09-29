@@ -149,20 +149,22 @@ new Promise(async (resolve, reject) => {
 });
 
 onBeforeMount(async()=>{
-  try {
-    let {data} =await likelist(userInfo.value.userId);
-    console.log(data);
-    
-    if(data.ids.length){
-      setLikeList(data.ids);
-    }else{
-      setLikeList([]);
+  if (userInfo.value.userId) {
+    try {
+      let { data } = await likelist(userInfo.value.userId);
+      console.log(data);
+
+      if (data.ids.length) {
+        setLikeList(data.ids);
+      } else {
+        setLikeList([]);
+      }
+    } catch (e) {
+      ElMessage({
+        type: "error",
+        message: e as string
+      })
     }
-  } catch (e) {
-    ElMessage({
-      type:"error",
-      message:e as string
-    })
   }
 });
 </script>
